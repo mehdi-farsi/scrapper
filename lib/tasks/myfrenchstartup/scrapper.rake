@@ -14,6 +14,7 @@ namespace :myfrenchstartup do
     BASE_URL = "http://www.myfrenchstartup.com/fr/liste-startup-france"
 
     companies = {}
+    startup_count = 0
 
     CSV.open("#{Dir.pwd}/test.csv", 'w') do |csv_file|
       
@@ -64,10 +65,14 @@ namespace :myfrenchstartup do
             startup.social_networks.create(name: name, link: link)
           end
 
+          startup_count += 1
+          print("\rscrapped startups: #{startup_count}")
+
         end # startup_links.each
       
       end # 1.upto(270)
     
     end # CSV.open
+    puts
   end
 end
