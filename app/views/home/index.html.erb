@@ -6,6 +6,7 @@
         <th class="left-align">startup name</th>
         <th class="left-align">startup logo</th>
         <th class="left-align">founders</th>
+        <th class="left-align">social networks</th>
       </tr>
     </thead>
 
@@ -18,6 +19,11 @@
           <td>
             <% startup.founders.each do |founder| %>
             <%= "#{founder.job_title} - #{founder.name}" %><br />
+            <% end %>
+          </td>
+          <td>
+            <% startup.social_networks.each do |sn| %>
+              <%= link_to(sn.name, sn.link, target: "_blank") %><br />
             <% end %>
           </td>
         </tr>
