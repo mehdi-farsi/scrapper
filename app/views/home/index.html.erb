@@ -3,9 +3,9 @@
 
     <thead>
       <tr>
-        <th>startup name</th>
-        <th>startup logo</th>
-        <th>founders</th>
+        <th class="left-align">startup name</th>
+        <th class="left-align">startup logo</th>
+        <th class="left-align">founders</th>
       </tr>
     </thead>
 
@@ -15,7 +15,7 @@
         <tr>
           <td><%= startup.public_name %></td>
           <td><%= image_tag(startup.logo, size: "70x70") %></td>
-          <td style="padding-left: 100px;">
+          <td>
             <% startup.founders.each do |founder| %>
             <%= "#{founder.job_title} - #{founder.name}" %><br />
             <% end %>
