@@ -3,7 +3,7 @@
 # 
 
 namespace :myfrenchstartup do
-  desc "Ecrire un scrapper qui extrait vers une database le maximum d’informations pertinentes depuis l'annuaire: http://www.myfrenchstartup.com/fr/liste­startup­france"
+  desc "Ecrire un scrapper qui extrait vers une database le maximum d’informations pertinentes depuis l'annuaire: http://www.myfrenchstartup.com/fr/liste­-startup-­france"
   task :scrapper => :environment do
     require 'nokogiri'
     require 'rest-client'
