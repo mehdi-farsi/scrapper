@@ -1,2 +1,35 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="index">
+  <table id="startup-table">
+
+    <thead>
+      <tr>
+        <th>startup name</th>
+        <th>startup logo</th>
+        <th>founders</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @startups.each do |startup| %>
+        <% unless startup.public_name.blank? %>
+        <tr>
+          <td><%= startup.public_name %></td>
+          <td><%= image_tag(startup.logo, size: "70x70") %></td>
+          <td style="padding-left: 100px;">
+            <% startup.founders.each do |founder| %>
+            <%= "#{founder.job_title} - #{founder.name}" %><br />
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+
+  </table>
+</div>
+
+<script>
+$(document).ready(function(){
+    $("#startup-table").DataTable();
+});
+</script>
