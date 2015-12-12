@@ -17,7 +17,7 @@
         <% unless startup.public_name.blank? %>
         <tr>
           <td><%= startup.public_name %></td>
-          <td><%= image_tag(startup.logo, size: "70x70") %></td>
+          <td><%= image_tag(startup.logo, size: "80x70") %></td>
           <td>
             <% startup.founders.each do |founder| %>
             <%= "#{founder.job_title} - #{founder.name}" %><br />
