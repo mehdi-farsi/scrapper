@@ -7,6 +7,8 @@
         <th class="left-align">startup logo</th>
         <th class="left-align">founders</th>
         <th class="left-align">social networks</th>
+        <th class="left-align">done</th>
+        <th class="left-align">uninteresting</th>
       </tr>
     </thead>
 
@@ -25,6 +27,12 @@
             <% startup.social_networks.each do |sn| %>
               <%= link_to(sn.name, sn.link, target: "_blank") %><br />
             <% end %>
+          </td>
+          <td>
+            <%= check_box_tag "startup", "done", startup.done?, {
+              id: "done-#{startup.id}",
+              onclick: "updateCheckBox('#done-#{startup.id}')"
+            } %>
           </td>
         </tr>
         <% end %>
