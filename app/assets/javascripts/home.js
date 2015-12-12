@@ -1,22 +1,23 @@
 'use strict';
 
+$(document).ready(function() {
+    $('#startup-table').DataTable();
+} );
+
 function updateCheckBox(id) {
   var startupId    = id.split('-')[1];
-  var checkBoxtype = id.split('-')[0];
+  var checkBoxtype = id.split('-')[0].substr(1);
   var checked      = $(id).prop("checked");
 
   // PUT request data
-  var startup_info = {
-    startup: {
-      done: checked
-    }
-  };
+  var startupInfo = { startup: { } };
+  startupInfo["startup"][checkBoxtype.toString()] = checked;
 
   var request = $.ajax({
     url:    "/startups/" + startupId,
     contentType: "application/json",
     method: "PUT",
-    data: JSON.stringify(startup_info)
+    data: JSON.stringify(startupInfo)
   });
 
   request.done(function( msg ) {

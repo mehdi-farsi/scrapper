@@ -34,6 +34,12 @@
               onclick: "updateCheckBox('#done-#{startup.id}')"
             } %>
           </td>
+          <td>
+            <%= check_box_tag "startup", "uninteresting", startup.uninteresting?, {
+              id: "uninteresting-#{startup.id}",
+              onclick: "updateCheckBox('#uninteresting-#{startup.id}')"
+            } %>
+          </td>
         </tr>
         <% end %>
       <% end %>
@@ -41,9 +47,3 @@
 
   </table>
 </div>
-
-<script>
-$(document).ready(function(){
-    $("#startup-table").DataTable();
-});
-</script>
