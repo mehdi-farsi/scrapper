@@ -6,6 +6,7 @@
         <th class="left-align">startup name</th>
         <th class="left-align">startup logo</th>
         <th class="left-align">founders</th>
+        <th class="left-align">email</th>
         <th class="left-align">social networks</th>
         <th class="left-align">done</th>
         <th class="left-align">uninteresting</th>
@@ -15,15 +16,27 @@
     <tbody>
       <% @startups.each do |startup| %>
         <% unless startup.public_name.blank? %>
-        <tr>
-          <td><%= startup.public_name %></td>
-          <td><%= image_tag(startup.logo, size: "80x70") %></td>
-          <td>
-            <% startup.founders.each do |founder| %>
-            <%= "#{founder.job_title} - #{founder.name}" %><br />
-            <% end %>
+        <tr id="row-<%= startup.id %>">
+          <td id="startup-name"><%= startup.public_name %></td>
+          <td id="logo"><%= image_tag(startup.logo, size: "80x70") %></td>
+          <td id="employees">
+            <ul>
+              <% startup.founders.each do |founder| %>
+                <li>
+                  <span id="job-title"><%= founder.job_title %></span> - <span id="employee-name"><%= founder.name %></span>
+                </li><br />
+              <% end %>
+            </ul>
           </td>
-          <td>
+          <td id="emails">
+            <div id="domain-form">
+              <%= text_field_tag "Domain", nil, placeholder: "example.com", id: "domain-input" %>
+              <%= submit_tag "OK", id: "domain-submit", onclick: "generateEmails('#row-#{startup.id}')" %>
+            </div>
+            <ul id="email-propositions">
+            </ul>
+          </td>
+          <td id="social-networks">
             <% startup.social_networks.each do |sn| %>
               <%= link_to(sn.name, sn.link, target: "_blank") %><br />
             <% end %>

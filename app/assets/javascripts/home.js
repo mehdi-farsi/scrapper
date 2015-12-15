@@ -28,3 +28,44 @@ function updateCheckBox(id) {
     alert("Request failed");
   });
 }
+
+function concatenateEmails (firstname, lastname, domain) {
+  return ([
+    firstname + "@" + domain,
+    firstname + "." + lastname + "@" + domain,
+    firstname.charAt(0) + lastname + "@" + domain
+  ]);
+}
+
+function generateEmails(rowId) {
+  var domainInput       = $(rowId + " #domain-input").val();
+  var employees         = $(rowId + " #employees #employee-name");
+  var emailPropositions = $(rowId + " #email-propositions");
+  var emailResults      = [];
+
+  // For checking if the input is blank or contains only white-spaces
+  if (domainInput.length === 0 || !domainInput.trim() || $(rowId + " #email-propositions li").length > 0) {
+    return (false);
+  };
+
+  employees.each(function(index, elem) {
+    var fullname  = $(this).text().split(' ');
+    var firstname = fullname.shift();
+    var lastname  = fullname.join('-');
+
+    // generate emails
+    emailResults = concatenateEmails(
+      firstname.toLowerCase().latinize(),
+      lastname.toLowerCase().latinize(),
+      domainInput.toLowerCase().latinize()
+    );
+
+    // display email propositions
+    emailResults.map(function(elem) {
+      emailPropositions.append("<li>" + elem + "</li>");
+    })
+    
+  });
+}
+
+
